@@ -1,0 +1,38 @@
+version: "3"
+services:
+
+  db:
+    image: postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - "5491:5432" # use port that you want to in your local instead of 5491
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  api:
+    build: ./api
+    command: bash -c "rm -f /api/tmp/pids/server.pid && foreman start -f /api/Procfile"
+    environment:
+      - PORT=3000
+    volumes:
+      - ./api:/api
+      - rails_log:/api/log
+    ports:
+      - "3091:3000" # use port that you want to in your local instead of 3091
+    depends_on:
+      - db
+  
+  front:
+    build: ./front
+    command: "npm run serve"
+    ports:
+      - "8091:8080" # use port that you want to in your local instead of 8091
+    volumes:
+      - ./front:/front
+      - front_node_modules:/front/node_modules
+
+volumes:
+  db:
+  rails_log:
+  front_node_modules:
