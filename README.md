@@ -11,4 +11,4 @@ A platform do show some statistics which is seeded from CSV file
 * sudo docker-compose run api rails db:migrate
 * sudo docker-compose run api rails db:seed
 ### Wait seed operation to finish then go to localhost:8091
-#### Note: ports 8091, 3091, 5432 are user by docker
+#### Note: ports 8091, 3091, 5432 are used by docker
