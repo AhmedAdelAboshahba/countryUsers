@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app>
-      <v-navigation-drawer dark app permenant clipped>
+      <v-navigation-drawer dark app permanent :mini-variant="$vuetify.breakpoint.smAndDown" clipped>
         <v-list dense rounded>
           <v-list-item
             v-for="item in items"
