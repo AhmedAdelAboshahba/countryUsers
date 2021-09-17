@@ -60,10 +60,7 @@ export default {
       let params = {
         country: this.currentCountry,
         page: this.options.page,
-        perPage:
-          this.options.itemsPerPage == -1
-            ? this.totalUsers
-            : this.options.itemsPerPage,
+        perPage: this.options.itemsPerPage,
       };
       this.getCountryUsers(params).then(() => {
         this.users = this._.map(this.countryUsers.data, (user) => ({
@@ -85,7 +82,7 @@ export default {
       deep: true,
     },
     currentCountry() {
-      this.options = { page: 1 }
+      this.options = { page: 1, itemsPerPage: this.options.itemsPerPage }
       this.getUsers()
     }
   },
